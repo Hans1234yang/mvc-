@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "jiafa";
+}
+
+<h2>jiafa</h2>
+
+<input type="text" class="" id="aaa" />
+
+<label id="fuhao" >+</label>
+
+<input type="text" class="" id="bbb" />
+
+=
+<input type="text" class="" id="ccc" />
+
+
+<button type="button" id="ddd"  >加法</button>
+<button type="button" id="eee">减法</button>
+<button type="button" id="fff">乘法</button>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js">
+</script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#ddd").click(function () {
+
+            add();
+
+        })
+
+        $("#eee").click(function () {
+
+            jianfa();
+        })
+
+
+        $("#fff").click(function () {
+
+            chengfa();
+        })
+
+
+
+
+
+    })
+
+    function add () {
+        var valaaa = $("#aaa").val();
+        var valbbb = $("#bbb").val();
+
+        $("#fuhao").text('+');
+      
+        $.ajax({
+            type: 'post',
+            url: "/Add/Xiangjia?a=" + valaaa + " &b=" + valbbb,
+            success: function (data) {
+                ///返回没有值啊 
+               
+                $("#ccc").val(data);
+
+            }
+
+        });
+    }
+
+    function jianfa() {
+        var aaa = $("#aaa").val();
+        var bbb = $("#bbb").val();
+        $("#fuhao").text("-");
+
+        $.ajax({
+            type: 'post',
+            url: '/Add/Xiangjian?a=' + aaa + '&b=' + bbb,
+            success(data) {
+                $("#ccc").val(data);
+            }
+
+        });
+    }
+
+    function chengfa() {
+        var a = $("#aaa").val();
+        var b = $("#bbb").val();
+
+        $("#fuhao").text('*');
+        $.ajax({
+            type: 'post',
+            url: '/Add/XiangCheng?a=' + a + "&b=" + b,
+
+            success(data) {
+
+                $("#ccc").val(data);
+            }
+        });
+    }
+
+</script>
